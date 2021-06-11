@@ -23,8 +23,7 @@
 
         	<!-- Modal Button -->
 					<div class="col-lg-12 text-center ">
-						<button class="btn btn-lg btn-warning rounded-0 text-white" href="#"
-							data-toggle="modal" data-target="#addProject"><span>CREATE NEW
+						<button class="btn btn-lg btn-warning rounded-0 text-white" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><span>CREATE NEW
 								PROJECT</span></button>
 					</div
 
@@ -139,6 +138,8 @@
 
 
          <!-- Portfolio Modal 1-->
+
+         
          <% for (let i=0; i<projects.length; i++) { %>
          <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" aria-labelledby="portfolioModal1" aria-hidden="true">
             <div class="modal-dialog modal-xl">
@@ -192,7 +193,7 @@
     <!-- Tab panes -->
     <div class="tab-content">
         <div class="tab-pane active" id="Login">
-            <form method="POST" action="/projects/<%= projects[i].slug %>?_method=PUT" class="form-horizontal">
+            <form method="POST" action="/<%= projects[i].slug %>?_method=PUT" class="form-horizontal">
                 <div class="form-group">
                     <div class="col-sm-12">
                         <input type="text" name="name" value="<%= projects[i].title %>" class="form-control"  placeholder="Course Name">
@@ -228,14 +229,15 @@
 
 
     <!-- ADD Modal -->
-		<div class="modal fade" id="addProject" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+   
+		<div class="modal fade" id="staticBackdrop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
             <div class="modal-content">
             <div class="modal-body customer-box">
                 <!-- Tab panes -->
                 <div class="tab-content">
                     <div class="tab-pane active" id="Login">
-                        <form method="POST" action="/projects" class="form-horizontal">
+                        <form method="POST" action="/" class="form-horizontal">
                             <div class="form-group">
                                 <div class="col-sm-12">
                                     <input type="text" name="title" class="form-control"  placeholder="Project Name">
@@ -271,6 +273,7 @@
             </div>
             </div>
             </div>
+          
      
 
 

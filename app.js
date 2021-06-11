@@ -6,7 +6,7 @@ const fileUpload = require("express-fileupload");
 const methodOverride = require("method-override");
 
 const pageRoute = require("./routes/pageRoute");
-const projectRoute = require("./routes/projectRoute");
+// const projectRoute = require("./routes/projectRoute");
 
 const app = express();
 
@@ -43,7 +43,7 @@ app.use(
 // ROUTES
 
 app.use("/", pageRoute);
-app.use("/projects", projectRoute);
+// app.use("/projects", projectRoute);
 
 const port = 3000;
 app.listen(port, () => {
