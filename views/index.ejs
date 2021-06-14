@@ -21,14 +21,17 @@
             </div>
         </header>
 
-        	<!-- Modal Button -->
+
+
+        	<!-- Add Modal Button -->
 					<div class="col-lg-12 text-center ">
-						<button class="btn btn-lg btn-warning rounded-0 text-white" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><span>CREATE NEW
+						<button class="btn btn-lg btn-warning rounded-0 text-white" data-bs-toggle="modal" data-bs-target="#addModal"><span>CREATE NEW
 								PROJECT</span></button>
 					</div
 
+
       
-        <!-- Portfolio Section-->
+    <!-- Portfolio Section -->
         
         <section class="page-section portfolio" id="portfolio">
             <div class="container">
@@ -40,24 +43,99 @@
                     <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
                     <div class="divider-custom-line"></div>
                 </div>
+
+
                 <!-- Portfolio Grid Items-->
-               
                 <div class="row justify-content-center">
                     <!-- Portfolio Item 1-->
                     <% for (let i=0; i<projects.length; i++) { %>
                     <div class="col-md-6 col-lg-4 mb-5">
-                        <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#portfolioModal1">
+                        <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#portfolioModal<%=i%>">
                             <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
                                 <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
                             </div>
-                            <img class="img-fluid" src="<%= projects[i].image %>" alt="..." />
+                             <img class="img-fluid" src="/assets/img/portfolio/cabin.png" alt="..." />
                         </div>
                     </div>
                     <% } %>
-                  
                 </div>
 
-               
+                <!-- Portfolio Modals-->
+                <% for (let i=0; i<projects.length; i++) { %>
+                    <div class="portfolio-modal modal fade" id="portfolioModal<%=i%>" tabindex="-1" aria-labelledby="portfolioModal1" aria-hidden="true">
+                        <div class="modal-dialog modal-xl">
+                            <div class="modal-content">
+                                <div class="modal-header border-0"><button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                                <div class="modal-body text-center pb-5">
+                                    <div class="container">
+                                        <div class="row justify-content-center">
+                                            <div class="col-lg-8">
+                                                <!-- Portfolio Modal - Title-->
+                                                <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0"><%= projects[i].title%></h2>
+                                                     <!-- Icon Divider-->
+                                                <div class="divider-custom">
+                                                    <div class="divider-custom-line"></div>
+                                                    <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                                                    <div class="divider-custom-line"></div>
+                                                </div>
+                                                       
+                                                <!-- Portfolio Modal - Image-->
+                                                <<img class="img-fluid rounded mb-5" src="/assets/img/portfolio/cabin.png" alt="..." />
+                                                <!-- Portfolio Modal - Text-->
+                                                <p class="mb-4"><%= projects[i].description %></p>
+
+                                                <!-- Portfolio Modal - Edit button-->
+
+                                                <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#editModal<%=i%>">
+
+                                                    <div class="col-lg-12 text-center">
+                                                        <button
+                                                          class="btn btn-lg btn-warning rounded-0 text-white"
+                                                          href="/"
+                                                          data-toggle="modal"
+                                                          data-target="#editModal<%=i%>"
+                                                        >
+                                                          <span>EDIT</span>
+                                                        </button>
+                                                        
+                                                      
+                                                      </div>
+                                                      
+                                                </div>
+
+                                                <div class="text-center">
+                                                    <a href="/<%= projects[i]._id %>?_method=DELETE"  class="btn btn-danger p-0 tm-btn-animate tm-btn-download tm-icon-download"
+                                                      
+                                                    onclick="return confirm('ARE YOU SURE?')"><span>DELETE</span></a>	
+                                                </div>
+
+                                                <!-- Portfolio Modal - Close window button-->
+                                                <button class="btn btn-primary" href="#!" data-bs-dismiss="modal">
+                                                    <i class="fas fa-times fa-fw"></i>
+                                                    Close Window
+                                                </button>
+
+
+
+
+
+
+
+                                                </div>
+
+
+                                              
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <% } %>
+        
+
+
             </div>
         </section>
   
@@ -137,11 +215,8 @@
            <%- include('partials/_footer') -%>
 
 
-         <!-- Portfolio Modal 1-->
-
-         
-         <% for (let i=0; i<projects.length; i++) { %>
-         <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" aria-labelledby="portfolioModal1" aria-hidden="true">
+             <!-- ADD MODAL-->
+         <div class="portfolio-modal modal fade" id="addModal" tabindex="-1" aria-labelledby="portfolioModal6" aria-hidden="true">
             <div class="modal-dialog modal-xl">
                 <div class="modal-content">
                     <div class="modal-header border-0"><button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button></div>
@@ -150,8 +225,7 @@
                             <div class="row justify-content-center">
                                 <div class="col-lg-8">
                                     <!-- Portfolio Modal - Title-->
-                                    
-                                        <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0"><%= projects[i].title %></h2>
+                                    <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Add Project</h2>
                                     <!-- Icon Divider-->
                                     <div class="divider-custom">
                                         <div class="divider-custom-line"></div>
@@ -159,122 +233,152 @@
                                         <div class="divider-custom-line"></div>
                                     </div>
                                     <!-- Portfolio Modal - Image-->
-                                    <img class="img-fluid rounded mb-5" src="<%= projects[i].image %>" alt="..." />
-                                    <!-- Portfolio Modal - Text-->
-                                    <p class="mb-4"><%= projects[i].description %></p>
+                                    <img class="img-fluid rounded mb-5" src="/assets/img/portfolio/submarine.png" alt="..." />
 
-                                    <div class="clearfix">
-                                        <ul style="list-style-type: none;">
-                                            <li style="float: left;"><button class="btn btn-primary rounded-0 text-white"
-                                                data-toggle="modal" data-target="#updateProject<%= projects[i].slug %>"
-                                                ><span>UPDATE</span></button></li>
-                                        </ul>
+
+
+                                     <!-- Add Section Form-->
+                                     <div class="row justify-content-center">
+                                        <div class="col-lg-8 col-xl-7">
+                                            <!-- * * * * * * * * * * * * * * *-->
+                                            <!-- * * SB Forms Contact Form * *-->
+                                            <!-- * * * * * * * * * * * * * * *-->
+                                            <!-- This form is pre-integrated with SB Forms.-->
+                                            <!-- To make this form functional, sign up at-->
+                                            <!-- https://startbootstrap.com/solution/contact-forms-->
+                                            <!-- to get an API token!-->
+                                            <form method="POST" action="/">
+                                                <!-- Name input-->
+                                                <div class="form-floating mb-3">
+                                                    <input class="form-control" name="title" type="text" placeholder="Enter a title..." data-sb-validations="required" />
+                                                    <label for="name">Title</label>
+                                                    <div class="invalid-feedback" data-sb-feedback="name:required">A title is required.</div>
+                                                </div>
+                                               
+                                                <!-- Description input-->
+                                                <div class="form-floating mb-3">
+                                                    <textarea class="form-control" name="description" type="text" placeholder="Enter your description here..." style="height: 10rem" data-sb-validations="required"></textarea>
+                                                    <label for="message">Description</label>
+                                                    <div class="invalid-feedback" data-sb-feedback="message:required">A description is required.</div>
+                                                </div>
+                                                <!-- Submit success message-->
+                                                <!---->
+                                                <!-- This is what your users will see when the form-->
+                                                <!-- has successfully submitted-->
+                                                <div class="d-none" id="submitSuccessMessage">
+                                                    <div class="text-center mb-3">
+                                                        <div class="fw-bolder">Form submission successful!</div>
+                                                       
+                                                    </div>
+                                                </div>
+                                                <!-- Submit error message-->
+                                                <!---->
+                                                <!-- This is what your users will see when there is-->
+                                                <!-- an error submitting the form-->
+                                                <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Error sending message!</div></div>
+                                                <!-- Submit Button-->
+                                                <button class="btn btn-primary" id="submitButton" type="submit">Send</button>
+                                            </form>
+                                        </div>
+                                                        </div>
+                                                        
+                                                       <button class="btn btn-primary" href="/" data-bs-dismiss="modal">
+                                                            <i class="fas fa-times fa-fw"></i>
+                                                            Close Window
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-
-                                
-                                    <button class="btn btn-primary" href="#!" data-bs-dismiss="modal">
-                                        <i class="fas fa-times fa-fw"></i>
-                                        Close Window
-                                    </button>
-                                   
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- UPDATE Modal -->
-<div class="modal fade" id="updateProject<%= projects[i].slug %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-    <div class="modal-content">
-    <div class="modal-body customer-box">
-    <!-- Tab panes -->
-    <div class="tab-content">
-        <div class="tab-pane active" id="Login">
-            <form method="POST" action="/<%= projects[i].slug %>?_method=PUT" class="form-horizontal">
-                <div class="form-group">
-                    <div class="col-sm-12">
-                        <input type="text" name="name" value="<%= projects[i].title %>" class="form-control"  placeholder="Course Name">
-                    </div>
-                </div>
-               
-                <div class="form-group">
-                    <div class="col-sm-12">
-                        <textarea rows="8" name="description" class="form-control"
-                        placeholder="Project Description" required><%= projects[i].description %></textarea>
-                    </div>
-                </div>
-            
-                <div class="row">
-                    <div class="col-sm-10">
-                        <button type="submit" class="btn btn-light btn-radius btn-brd grd1">
-                            Submit
-                        </button>
-                        <button type="submit" class="btn btn-light btn-radius btn-brd grd1"
-                            data-dismiss="modal" aria-hidden="true">
-                            Cancel
-                        </button>
-                    </div>
-                </div>
-            </form>
-            <% } %>
-        </div>
-    </div>
-    </div>
-    </div>
-    </div>
-    </div>
-
-
-    <!-- ADD Modal -->
-   
-		<div class="modal fade" id="staticBackdrop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-            <div class="modal-content">
-            <div class="modal-body customer-box">
-                <!-- Tab panes -->
-                <div class="tab-content">
-                    <div class="tab-pane active" id="Login">
-                        <form method="POST" action="/" class="form-horizontal">
-                            <div class="form-group">
-                                <div class="col-sm-12">
-                                    <input type="text" name="title" class="form-control"  placeholder="Project Name">
-                                </div>
-                            </div>
-                           
-                            <div class="form-group">
-                                <div class="col-sm-12">
-                                    <textarea rows="8" name="description" class="form-control"
-                                    placeholder="Project Description" required></textarea>
                                 </div>
                             </div>
 
-                            <div class="form-group">
-                                <input type="file" name="image" class="form-control-file rounded-0">
-                              </div>
-                         
-                            <div class="row">
-                                <div class="col-sm-10">
-                                    <button type="submit" class="btn btn-light btn-radius btn-brd grd1">
-                                        Submit
-                                    </button>
-                                    <button type="submit" class="btn btn-light btn-radius btn-brd grd1"
-                                        data-dismiss="modal" aria-hidden="true">
-                                        Cancel
-                                    </button>
+                            
+
+
+                            <% for (let i = 0; i < projects.length ; i++) { %>
+                                <!-- EDİT MODAL-->
+                                <div class="portfolio-modal modal fade" id="editModal<%=i%>" tabindex="-1" aria-labelledby="editModal<%=i%>" aria-hidden="true">
+                                    <div class="modal-dialog modal-xl">
+                                        <div class="modal-content">
+                                            <div class="modal-header border-0"><button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                                            <div class="modal-body text-center pb-5">
+                                                <div class="container">
+                                                    <div class="row justify-content-center">
+                                                        <div class="col-lg-8">
+                                                            <!-- Portfolio Modal - Title-->
+                                                            <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Edit Portfolio</h2>
+                                                            <!-- Icon Divider-->
+                                                            <div class="divider-custom">
+                                                                <div class="divider-custom-line"></div>
+                                                                <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                                                                <div class="divider-custom-line"></div>
+                                                            </div>
+                                                            <!-- Portfolio Modal - Image-->
+                                                            <img class="img-fluid rounded mb-5" src="/assets/img/portfolio/submarine.png" alt="..." />
+                                                            
+                                                             <!-- Add Section Form-->
+                                                             <div class="row justify-content-center">
+                                            <div class="col-lg-8 col-xl-7">
+                                              
+                                                <form  novalidate method="POST" action="/<%= projects[i]._id %>?_method=PUT"  class="tm-contact-form">
+                                                    <!-- Name input-->
+                                                    <div class="form-floating mb-3">
+                                                        <input class="form-control" name="title" type="text"  value="<%= projects[i].title %>"  data-sb-validations="required" />
+                                                        
+                                                        <div class="invalid-feedback" data-sb-feedback="name:required">A title is required.</div>
+                                                    </div>
+                                                   
+                                                    <!-- Message input-->
+                                                    <div class="form-floating mb-3">
+                                                        <input class="form-control" name="description" type="text"  value="<%= projects[i].description %>" data-sb-validations="required" />
+                                                       
+                                                        <div class="invalid-feedback" data-sb-feedback="message:required">A description is required.</div>
+                                                    </div>
+                                                    <!-- Submit success message-->
+                                                    <!---->
+                                                    <!-- This is what your users will see when the form-->
+                                                    <!-- has successfully submitted-->
+                                                    <div class="d-none" id="submitSuccessMessage">
+                                                        <div class="text-center mb-3">
+                                                            <div class="fw-bolder">Form submission successful!</div>
+                                                           
+                                                        </div>
+                                                    </div>
+                                                    <!-- Submit error message-->
+                                                    <!---->
+                                                    <!-- This is what your users will see when there is-->
+                                                    <!-- an error submitting the form-->
+                                                    <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Error sending message!</div></div>
+                                                    <!-- Submit Button-->
+                                                    <button class="btn btn-primary" id="submitButton" type="submit">Send</button>
+                                                </form>
+                                            </div>
+                                                            </div>
+                                                            
+                                                           <button class="btn btn-primary" href="/" data-bs-dismiss="modal">
+                                                                <i class="fas fa-times fa-fw"></i>
+                                                                Close Window
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-            </div>
-            </div>
-            </div>
-          
+                                <% } %>
+                        
+                    
+
+
+
+         
      
+       
+
+ 
 
 
 

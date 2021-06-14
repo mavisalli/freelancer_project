@@ -2,11 +2,10 @@ const mongoose = require("mongoose");
 const express = require("express");
 
 const ejs = require("ejs");
-const fileUpload = require("express-fileupload");
 const methodOverride = require("method-override");
 
 const pageRoute = require("./routes/pageRoute");
-// const projectRoute = require("./routes/projectRoute");
+
 
 const app = express();
 
@@ -33,7 +32,6 @@ app.set("view engine", "ejs");
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(fileUpload());
 app.use(
   methodOverride("_method", {
     methods: ["POST", "GET"],
@@ -43,7 +41,7 @@ app.use(
 // ROUTES
 
 app.use("/", pageRoute);
-// app.use("/projects", projectRoute);
+
 
 const port = 3000;
 app.listen(port, () => {
