@@ -3,6 +3,7 @@ const express = require("express");
 
 const ejs = require("ejs");
 const methodOverride = require("method-override");
+const fileUpload = require('express-fileupload');
 
 const pageRoute = require("./routes/pageRoute");
 
@@ -32,6 +33,7 @@ app.set("view engine", "ejs");
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(fileUpload()); 
 app.use(
   methodOverride("_method", {
     methods: ["POST", "GET"],

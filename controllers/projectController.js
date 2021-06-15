@@ -5,6 +5,8 @@ const fs = require('fs');
 exports.createProject = async (req, res) => {
 
     try{
+
+      
       const project = await Project.create({
         title: req.body.title,
         description: req.body.description
@@ -45,19 +47,3 @@ exports.deleteProject = async (req, res) => {
   
 }
 
-exports.getAllProjects = async (req, res) => {
-  try {
-   
-    
-    const projects = await Project.find();
-
-    res.status(200).render('index',{
-      projects,
-    })
-  } catch(error) {
-    res.status(400).json({
-      status: 'fail',
-      error,
-    });
-  }
-};

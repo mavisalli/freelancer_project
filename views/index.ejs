@@ -80,37 +80,24 @@
                                                 </div>
                                                        
                                                 <!-- Portfolio Modal - Image-->
-                                                <<img class="img-fluid rounded mb-5" src="/assets/img/portfolio/cabin.png" alt="..." />
+                                                <img class="img-fluid rounded mb-5" src="/assets/img/portfolio/cabin.png" alt="..." />
                                                 <!-- Portfolio Modal - Text-->
                                                 <p class="mb-4"><%= projects[i].description %></p>
 
-                                                <!-- Portfolio Modal - Edit button-->
+                                                <!-- Portfolio Modal - Edit and Delete button-->
 
-                                                <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#editModal<%=i%>">
 
-                                                    <div class="col-lg-12 text-center">
-                                                        <button
-                                                          class="btn btn-lg btn-warning rounded-0 text-white"
-                                                          href="/"
-                                                          data-toggle="modal"
-                                                          data-target="#editModal<%=i%>"
-                                                        >
-                                                          <span>EDIT</span>
-                                                        </button>
-                                                        
-                                                      
-                                                      </div>
-                                                      
-                                                </div>
-
-                                                <div class="text-center">
-                                                    <a href="/<%= projects[i]._id %>?_method=DELETE"  class="btn btn-danger p-0 tm-btn-animate tm-btn-download tm-icon-download"
-                                                      
-                                                    onclick="return confirm('ARE YOU SURE?')"><span>DELETE</span></a>	
+                                                <div class="clearfix">
+                                                    <ul style="list-style-type: none;">
+                                                        <li style="float: left;"><button class="btn btn-warning rounded-0 text-white" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#editModal<%=i%>"><span>UPDATE</span></button></li>
+                                                        <li style="float: right;"><a href="/<%= projects[i]._id %>?_method=DELETE" " 
+                                                            onclick="return confirm('ARE YOU SURE')"
+                                                            class="btn btn-danger rounded-0 text-white"><span>DELETE</span></a></li>
+                                                    </ul>
                                                 </div>
 
                                                 <!-- Portfolio Modal - Close window button-->
-                                                <button class="btn btn-primary" href="#!" data-bs-dismiss="modal">
+                                                <button class="btn btn-primary" href="#" data-bs-dismiss="modal">
                                                     <i class="fas fa-times fa-fw"></i>
                                                     Close Window
                                                 </button>
@@ -277,7 +264,7 @@
                                                 <!-- an error submitting the form-->
                                                 <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Error sending message!</div></div>
                                                 <!-- Submit Button-->
-                                                <button class="btn btn-primary" id="submitButton" type="submit">Send</button>
+                                                <button class="btn btn-primary mb-3" id="submitButton" type="submit">Send</button>
                                             </form>
                                         </div>
                                                         </div>
@@ -352,7 +339,7 @@
                                                     <!-- an error submitting the form-->
                                                     <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Error sending message!</div></div>
                                                     <!-- Submit Button-->
-                                                    <button class="btn btn-primary" id="submitButton" type="submit">Send</button>
+                                                    <button class="btn btn-primary mb-3" id="submitButton" type="submit">Send</button>
                                                 </form>
                                             </div>
                                                             </div>
