@@ -17,7 +17,7 @@ const app = express();
 // Connect DB
 
 mongoose
-  .connect("mongodb://localhost/freelancer-db", {
+  .connect("mongodb+srv://mavibaris:Kitaptek12@cluster0.qr0gv.mongodb.net/freelancer-db?retryWrites=true&w=majority", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useFindAndModify: false,
