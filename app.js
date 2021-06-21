@@ -4,8 +4,11 @@ const express = require("express");
 const ejs = require("ejs");
 const methodOverride = require("method-override");
 const fileUpload = require('express-fileupload');
+const session = require('express-session');
+const MongoStore = require('connect-mongo');
 
 const pageRoute = require("./routes/pageRoute");
+const adminRoute = require("./routes/adminRoute");
 
 
 const app = express();
@@ -29,6 +32,9 @@ mongoose
 //TEMPLATE ENGİNE
 app.set("view engine", "ejs");
 
+//GLOBAL VARIABLE
+global.adminIN = null;
+
 // MİDDLEWARES
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
@@ -39,10 +45,22 @@ app.use(
     methods: ["POST", "GET"],
   })
 );
-
+app.use(
+  session({
+    secret: 'my_keyboard_cat',
+    resave: false,
+    saveUninitialized: true,
+    store: MongoStore.create({ mongoUrl: 'mongodb://localhost/freelancer-db' }),
+  }) 
+);
 // ROUTES
+app.use("*", (req,res,next)=> {
+  adminIN = req.session.adminId;
+  next();
 
+})
 app.use("/", pageRoute);
+app.use("/admins", adminRoute);
 
 
 const port = 3000;

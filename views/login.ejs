@@ -1,0 +1,41 @@
+<%- include('partials/_header') -%>
+
+
+<%- include('partials/_navigation') -%>
+
+<section class="page-section" id="contact">
+    <div class="container">
+        <!-- Contact Section Heading-->
+        <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Admin Login</h2>
+        <!-- Contact Section Form-->
+        <div class="row justify-content-center">
+            <div class="col-lg-8 col-xl-7">
+                
+                <form id="contactForm" method="POST" action="admins/login">
+
+                    <!-- Name input-->
+                    <div class="form-floating mb-3">
+                        <input class="form-control" id="name" name="name" type="text" placeholder="enter your name" data-sb-validations="required,name" />
+                        <label for="name">Name</label>
+                        <div class="invalid-feedback" data-sb-feedback="name:required">Name is required.</div>
+                        <div class="invalid-feedback" data-sb-feedback="name:name">Name is not valid.</div>
+                    </div>   
+
+                    <!-- Password input-->
+                    <div class="form-floating mb-3">
+                        <input class="form-control" id="password" name="password" type="password" placeholder="Enter your password" data-sb-validations="required" />
+                        <label for="password">Password</label>
+                        <div class="invalid-feedback" data-sb-feedback="password:required">Password is required.</div>
+                    </div>  
+
+                    <!-- Submit Button-->
+                    <button class="btn btn-primary btn-xl enabled" id="submitButton" type="submit">Send</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+    <!-- Footer-->
+    <%- include('partials/_footer') -%>

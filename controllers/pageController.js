@@ -1,7 +1,10 @@
 const Project = require('../models/Project');
 
 
+
+
 exports.getIndexPage = async (req, res) => {
+  console.log(req.session.adminId)
 
   const projects = await Project.find({});
 
@@ -14,6 +17,9 @@ exports.getAboutPage = (req, res) => {
   res.status(200).render('about');
 };
 
+exports.getLoginPage = (req, res) => {
+  res.status(200).render('login');
+};
 
 
 
