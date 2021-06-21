@@ -51,7 +51,7 @@ app.use(
     secret: 'my_keyboard_cat',
     resave: false,
     saveUninitialized: true,
-    store: MongoStore.create({ mongoUrl: 'mongodb://localhost/freelancer-db' }),
+    store: MongoStore.create({ mongoUrl: 'mongodb+srv://mavibaris:Kitaptek12@cluster0.qr0gv.mongodb.net/freelancer-db?retryWrites=true&w=majority' }),
   }) 
 );
 // ROUTES
@@ -64,7 +64,7 @@ app.use("/", pageRoute);
 app.use("/admins", adminRoute);
 
 
-const port = 3000;
+const port = process.env.PORT || 3000;
 app.listen(port, () => {
   console.log(`Sunucu ${port} portunda başlatıldı..`);
 });
