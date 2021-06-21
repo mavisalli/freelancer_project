@@ -9,6 +9,7 @@ const router = express.Router();
 router.route('/').get(pageController.getIndexPage);
 router.route('/about').get(pageController.getAboutPage);
 router.route('/login').get(pageController.getLoginPage);
+router.route('/').post(pageController.sendEmail);
 
 router.route('/').post(projectController.createProject);
 router.route('/:id').put(projectController.updateProject);
