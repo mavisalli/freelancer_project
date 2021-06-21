@@ -17,6 +17,9 @@ exports.getAboutPage = (req, res) => {
   res.status(200).render('about');
 };
 
+exports.getContactPage = (req, res) => {
+  res.status(200).render('contact');
+};
 
 exports.getLoginPage = (req, res) => {
   res.status(200).render('login');
