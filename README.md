@@ -4,6 +4,8 @@
 
 ##  App has admin login, CRUD operations are allowed when admin login. Visitors cannot access these transactions
 
+# Contact form has been activated. What you write from the contact form is sent to my mail. Now we can contact! :raised_hand:
+
 ### Technologies and Frameworks I use
 
 - Backend: NodeJs
