@@ -2,7 +2,7 @@
 
 ## The project owner can share the visuals of the projects he has done and detailed information about the project. Also can use the add, update and delete features in the application.
 
-## App has admin login, CRUD operations are allowed when admin login. Visitors cannot access these transactions
+##  App has admin login, CRUD operations are allowed when admin login. Visitors cannot access these transactions
 
 ### Technologies and Frameworks I use
 

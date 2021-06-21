@@ -15,6 +15,10 @@ const ProjectSchema = new Schema({
     unique: true,
     trim: true
   },
+  image : {
+    type: String,
+    required: true
+  },
   createdAt: {
     type: Date,
     default: Date.now

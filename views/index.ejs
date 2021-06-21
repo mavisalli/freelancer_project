@@ -7,7 +7,7 @@
         <header class="masthead bg-primary text-white text-center">
             <div class="container d-flex align-items-center flex-column">
                 <!-- Masthead Avatar Image-->
-                <img class="masthead-avatar mb-5" src="assets/img/avataaars.svg" alt="..." />
+                <img class="masthead-avatar rounded mb-5" src="assets/img/profil.jpg" alt="..." />
                 <!-- Masthead Heading-->
                 <h1 class="masthead-heading text-uppercase mb-0">My Portfolio</h1>
                 <!-- Icon Divider-->
@@ -58,7 +58,7 @@
                             <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
                                 <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
                             </div>
-                             <img class="img-fluid" src="/assets/img/portfolio/cabin.png" alt="..." />
+                             <img class="img-fluid" src="<%= projects[i].image %>" alt="..." />
                         </div>
                     </div>
                     <% } %>
@@ -84,12 +84,12 @@
                                                 </div>
                                                        
                                                 <!-- Portfolio Modal - Image-->
-                                                <img class="img-fluid rounded mb-5" src="/assets/img/portfolio/cabin.png" alt="..." />
+                                                <img class="img-fluid rounded mb-5" src="<%= projects[i].image %>" alt="..." />
                                                 <!-- Portfolio Modal - Text-->
                                                 <p class="mb-4"><%= projects[i].description %></p>
 
                                                 <!-- Portfolio Modal - Edit and Delete button-->
-
+                                                <% if (adminIN) { %>
 
                                                 <div class="clearfix">
                                                     <ul style="list-style-type: none;">
@@ -99,6 +99,7 @@
                                                             class="btn btn-danger rounded-0 text-white"><span>DELETE</span></a></li>
                                                     </ul>
                                                 </div>
+                                                <% } %>
 
                                                 <!-- Portfolio Modal - Close window button-->
                                                 <button class="btn btn-primary" href="#" data-bs-dismiss="modal">
@@ -223,11 +224,7 @@
                                         <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
                                         <div class="divider-custom-line"></div>
                                     </div>
-                                    <!-- Portfolio Modal - Image-->
-                                    <img class="img-fluid rounded mb-5" src="/assets/img/portfolio/submarine.png" alt="..." />
-
-
-
+                                  
                                      <!-- Add Section Form-->
                                      <div class="row justify-content-center">
                                         <div class="col-lg-8 col-xl-7">
@@ -238,13 +235,17 @@
                                             <!-- To make this form functional, sign up at-->
                                             <!-- https://startbootstrap.com/solution/contact-forms-->
                                             <!-- to get an API token!-->
-                                            <form method="POST" action="/">
+                                            <form method="POST" action="/" encType="multipart/form-data">
                                                 <!-- Name input-->
                                                 <div class="form-floating mb-3">
                                                     <input class="form-control" name="title" type="text" placeholder="Enter a title..." data-sb-validations="required" />
                                                     <label for="name">Title</label>
                                                     <div class="invalid-feedback" data-sb-feedback="name:required">A title is required.</div>
                                                 </div>
+                                                <!-- İmage input-->
+                                                <div class="form-floating mb-3">
+                                                    <input type="file" name="image"  class="form-control">
+                                                </div> 
                                                
                                                 <!-- Description input-->
                                                 <div class="form-floating mb-3">
@@ -307,7 +308,11 @@
                                                                 <div class="divider-custom-line"></div>
                                                             </div>
                                                             <!-- Portfolio Modal - Image-->
-                                                            <img class="img-fluid rounded mb-5" src="/assets/img/portfolio/submarine.png" alt="..." />
+                                                             <!-- İmage input-->
+                                                            <div class="form-floating mb-3">
+                                                                <input type="file" value="<%= projects[i].image %>" name="image"  class="form-control">
+                                                            </div> 
+                                               
                                                             
                                                              <!-- Add Section Form-->
                                                              <div class="row justify-content-center">
@@ -321,7 +326,7 @@
                                                         <div class="invalid-feedback" data-sb-feedback="name:required">A title is required.</div>
                                                     </div>
                                                    
-                                                    <!-- Message input-->
+                                                    <!-- Description input-->
                                                     <div class="form-floating mb-3">
                                                         <input class="form-control" name="description" type="text"  value="<%= projects[i].description %>" data-sb-validations="required" />
                                                        
