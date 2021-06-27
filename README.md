@@ -14,5 +14,6 @@
 - Frameworks: Express, Mongoose
 
 #### :rocket: The project is on heroku: [Live App](https://freelancer-1.herokuapp.com/)
-
+- Username: mavi
+- password: pass1234
 
